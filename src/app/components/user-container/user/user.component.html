@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="input-group mb-3">
+		<input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" placeholder="Enter user name"
+			aria-label="Enter user name" aria-describedby="button-addon2">
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" (click)="findByName()" type="button" id="button-addon2">Search</button>
+			<button class="btn btn-outline-success" [routerLink]="['/add-user']" routerLinkActive="router-link-active" type="button" id="button-addon2">add <i class="fas fa-plus"></i></button>
+			<button class="btn btn-outline-primary" (click)="reportDownload()" data-toggle="modal" data-target="#exampleModalLong">PDF <i class="fas fa-caret-down"></i></button>
+		</div>
+
+		
+	</div>
+
+	<table class="table table-hover desktop">
+		<thead class="thead-dark">
+			<th scope="col">Username</th>
+			<th scope="col">Name</th>
+			<th scope="col">Last name</th>
+			<th scope="col">E-mail</th>
+			<th scope="col">Delete</th>
+			<th scope="col">Update</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of users | paginate: config; let index = index">
+				<td>{{user.username}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.lastName}}</td>
+				<td>{{user.email}}</td>
+				<td><button class="btn btn-outline-danger" (click)="deleteUser(user.uuid, index)">Delete</button></td>
+				<td><button class="btn btn-outline-warning" [routerLink]="['/add-user', user.uuid]"
+						routerLinkActive="router-link-active">Update</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="table table-hover mobile">
+		<thead class="thead-dark">
+			<th scope="col">Username</th>
+			<th scope="col">Name</th>
+			<th scope="col">Delete</th>
+			<th scope="col">Update</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of users | paginate: config; let index = index">
+				<td>{{user.username}}</td>
+				<td>{{user.name}}</td>
+				<td><button class="btn btn-outline-danger" (click)="deleteUser(user.uuid, index)">Delete</button></td>
+				<td><button class="btn btn-outline-warning" [routerLink]="['/add-user', user.uuid]"
+						routerLinkActive="router-link-active">Update</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="text-center">
+		<pagination-controls (pageChange)="loadPage($event)"></pagination-controls>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	aria-hidden="true">
+	<div class="modal-dialog size-modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">User Report</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<iframe id="pdf" frameborder="0" allowtransparency="true"></iframe>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</div><!--container-->

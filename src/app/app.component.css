@@ -1,0 +1,27 @@
+.clear {
+    clear: both;
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+li a {
+    border-radius: 2px;
+    transition: background-color 0.1s;
+}
+
+ul li a:hover {
+    background-color: #262626;
+    color: white;
+}
+
+.menu-exit {
+    float: right;
+}
+
+.menu-exit i {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}

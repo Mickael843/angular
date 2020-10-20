@@ -1,0 +1,18 @@
+<form>
+    <div class="container">
+      <div class="form-group-login">
+        <div class="form-group">
+          <label for="username" class="form-lbl">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="user.username" name="username" id="username" #username="ngModel">
+        </div><!--form-group-->
+      
+        <div class="form-group">
+          <label for="password" class="form-lbl">password</label>
+          <input type="password" class="form-control" [(ngModel)]="user.password" name="password" id="password" #password="ngModel">
+        </div><!--form-group-->
+      
+        <input type="button" class="btn btn-secondary" (click)="recovery()" value="Recover access" [disabled]="username.invalid">
+        <input type="button" class="btn btn-primary" (click)="login()" value="Login">
+      </div><!--form-group-login-->
+    </div><!--container-->
+  </form>
